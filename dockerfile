@@ -1,8 +1,14 @@
-FROM node:18
-RUN mkdir -p /home/app
+# Imagen oficial de Node.js
+FROM node:16
 
-COPY . /home/app
+WORKDIR /app
+
+COPY app/package*.json ./
+
+RUN npm install
+
+COPY . .
 
 EXPOSE 3000
 
-CMD ["node", "/home/app/index.js"]
+CMD ["npm", "start"]
